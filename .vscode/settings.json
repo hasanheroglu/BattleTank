@@ -1,0 +1,7 @@
+{
+	"files.exclude": {
+		"/Users/hasan/Desktop/LearnUnreal/BattleTank/Content": true,
+		"/Users/hasan/Desktop/LearnUnreal/BattleTank/.vscode": true,
+		"/Users/hasan/Desktop/LearnUnreal/BattleTank/Intermediate": true
+	}
+}
