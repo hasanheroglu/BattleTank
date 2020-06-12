@@ -2,7 +2,7 @@
 
 
 #include "TankAIController.h"
-
+#include "Tank.h"
 
 void ATankAIController::BeginPlay()
 {
@@ -17,11 +17,34 @@ void ATankAIController::BeginPlay()
     {
         UE_LOG(LogTemp, Warning, TEXT("Cannot get controlled tank by AI Controller."));
     }
+
+    if(GetPlayerTank())
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Get player tank named %s."), *GetPlayerTank()->GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Cannot get player tank."));
+    }
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+    Super::Tick( DeltaTime );
+    if(GetControlledTank())
+    {
+        GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+    }
 }
 
 ATank* ATankAIController::GetControlledTank() const
 {
     return Cast<ATank>(GetPawn());
+}
+
+ATank* ATankAIController::GetPlayerTank() const
+{
+    return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 }
 
 
